@@ -1,5 +1,12 @@
 # VITAE
 
+[![CI](https://github.com/saviobatista/vitae/workflows/CI/badge.svg)](https://github.com/saviobatista/vitae/actions/workflows/ci.yml)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/saviobatista/vitae/graphs/commit-activity)
+[![Next.js](https://img.shields.io/badge/Next.js-15.4.6-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)](https://www.typescriptlang.org/)
+
 **Transform your résumé. Tailor your future.**
 
 **VITAE** is an open source, AI-powered résumé tailoring tool. Upload your CV, paste a job description, and let the system reshape your professional story to match the role — exporting a clean, focused résumé in LaTeX and PDF formats.
