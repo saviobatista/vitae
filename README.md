@@ -29,14 +29,14 @@
 
 ## 🛠 Tech Stack
 
-| Layer        | Tech Used         |
-|--------------|-------------------|
-| Frontend     | Next.js (App Router) |
-| AI Integration | OpenAI GPT (via API) |
-| Parsing      | `pdf-lib`, `pdf-parse` |
-| Output       | LaTeX → PDF (via serverless render or WebAssembly) |
-| Hosting      | Vercel / GitHub Pages |
-| Storage      | Supabase / file-based fallback (optional) |
+| Layer          | Tech Used                                          |
+| -------------- | -------------------------------------------------- |
+| Frontend       | Next.js (App Router)                               |
+| AI Integration | OpenAI GPT (via API)                               |
+| Parsing        | `pdf-lib`, `pdf-parse`                             |
+| Output         | LaTeX → PDF (via serverless render or WebAssembly) |
+| Hosting        | Vercel / GitHub Pages                              |
+| Storage        | Supabase / file-based fallback (optional)          |
 
 ---
 
@@ -47,7 +47,7 @@ git clone https://github.com/saviobatista/vitae.git
 cd vitae
 pnpm install
 pnpm dev
-````
+```
 
 Create a `.env.local` file with your API keys:
 
@@ -76,15 +76,15 @@ OPENAI_API_KEY=sk-...
 
 ## 🧪 Roadmap
 
-* [ ] PDF Upload
-* [ ] Resume Parser
-* [ ] Job Description Input
-* [ ] AI Prompt Generator
-* [ ] Tailored Experience Selector
-* [ ] LaTeX PDF Renderer
-* [ ] Template Customization
-* [ ] Multiple Format Support (DOCX, TXT)
-* [ ] Plugin Architecture
+- [ ] PDF Upload
+- [ ] Resume Parser
+- [ ] Job Description Input
+- [ ] AI Prompt Generator
+- [ ] Tailored Experience Selector
+- [ ] LaTeX PDF Renderer
+- [ ] Template Customization
+- [ ] Multiple Format Support (DOCX, TXT)
+- [ ] Plugin Architecture
 
 ---
 
@@ -102,7 +102,7 @@ Pull requests are welcome! Please open an issue first to discuss your idea.
 
 ## 🏛️ About the Name
 
-**Vitae** is Latin for “life” — and the heart of *curriculum vitae*. This project brings your résumé to life: adaptive, tailored, and crafted for your next opportunity.
+**Vitae** is Latin for “life” — and the heart of _curriculum vitae_. This project brings your résumé to life: adaptive, tailored, and crafted for your next opportunity.
 
 ---
 
