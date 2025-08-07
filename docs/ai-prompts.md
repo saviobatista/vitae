@@ -4,9 +4,9 @@
 
 The prompt strategy guides how the system communicates with the AI to:
 
-* Extract structured information from uploaded résumés
-* Tailor user experience to match a job description
-* Highlight most relevant skills, metrics, and phrasing
+- Extract structured information from uploaded résumés
+- Tailor user experience to match a job description
+- Highlight most relevant skills, metrics, and phrasing
 
 ### 🧩 Prompt Types
 
@@ -51,6 +51,6 @@ Job description:
 
 ### 🎛 Prompt Configuration Tips
 
-* Use `temperature: 0.3` for consistency
-* Use `max_tokens` around 1500–3000 depending on verbosity
-* Consider retry mechanism for malformed output (JSON validation)
+- Use `temperature: 0.3` for consistency
+- Use `max_tokens` around 1500–3000 depending on verbosity
+- Consider retry mechanism for malformed output (JSON validation)

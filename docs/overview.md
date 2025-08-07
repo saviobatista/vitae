@@ -1,12 +1,12 @@
-## 📁 Overview 
+## 📁 Overview
 
 **VITAE** helps job seekers create customized résumés tailored to specific job descriptions using AI.
 
 ### 🎯 Key Goals
 
-* Help users present their experience in the most relevant and compelling way
-* Make résumé customization fast, accessible, and beautiful
-* Use open standards (LaTeX, PDF) for output
+- Help users present their experience in the most relevant and compelling way
+- Make résumé customization fast, accessible, and beautiful
+- Use open standards (LaTeX, PDF) for output
 
 ### 💡 Core Workflow
 

@@ -2,8 +2,8 @@
 
 ### 🧪 Requirements
 
-* Node.js 20+
-* pnpm (recommended)
+- Node.js 20+
+- pnpm (recommended)
 
 ### 🔧 Setup
 

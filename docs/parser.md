@@ -22,18 +22,18 @@ Convert an unstructured résumé PDF into structured JSON data representing each
 
 ### 🛠 Parsing Strategy
 
-* Use `pdf-lib` or `pdfjs-dist` to extract raw text from the uploaded file
-* Apply block segmentation heuristics:
+- Use `pdf-lib` or `pdfjs-dist` to extract raw text from the uploaded file
+- Apply block segmentation heuristics:
+  - Detect headers, line spacing, bullet points
+  - Identify known job-section patterns (e.g., Job Title @ Company)
 
-  * Detect headers, line spacing, bullet points
-  * Identify known job-section patterns (e.g., Job Title @ Company)
-* Sanitize and reflow multi-line content
-* Use AI fallback when heuristics are insufficient (via résumé parsing prompt)
+- Sanitize and reflow multi-line content
+- Use AI fallback when heuristics are insufficient (via résumé parsing prompt)
 
 ### 🔐 Privacy Considerations
 
-* Avoid uploading the full résumé to AI unless opted-in
-* Strip personal identifiers before processing (e.g., name, phone, email)
+- Avoid uploading the full résumé to AI unless opted-in
+- Strip personal identifiers before processing (e.g., name, phone, email)
 
 ### 📂 Parser Module Structure
 

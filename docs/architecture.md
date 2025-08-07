@@ -17,24 +17,20 @@ User
 
 ### 📦 Components
 
-* **Frontend (Next.js)**
+- **Frontend (Next.js)**
+  - `/app/upload`: File upload UI and validation
+  - `/app/builder`: Job description input and résumé tailoring
+  - `/app/export`: LaTeX preview and download
 
-  * `/app/upload`: File upload UI and validation
-  * `/app/builder`: Job description input and résumé tailoring
-  * `/app/export`: LaTeX preview and download
+- **PDF Parser**
+  - Converts raw PDF to JSON-like experience format
+  - Handles text layout and semantic block parsing
 
-* **PDF Parser**
+- **AI Tailoring Engine**
+  - Sends structured experience + job description to LLM
+  - Returns rewritten content emphasizing relevant traits
 
-  * Converts raw PDF to JSON-like experience format
-  * Handles text layout and semantic block parsing
-
-* **AI Tailoring Engine**
-
-  * Sends structured experience + job description to LLM
-  * Returns rewritten content emphasizing relevant traits
-
-* **LaTeX Generator**
-
-  * Selects or loads LaTeX template
-  * Fills in dynamic fields (experience, education, summary)
-  * Renders LaTeX as downloadable PDF
+- **LaTeX Generator**
+  - Selects or loads LaTeX template
+  - Fills in dynamic fields (experience, education, summary)
+  - Renders LaTeX as downloadable PDF

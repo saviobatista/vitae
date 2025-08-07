@@ -9,17 +9,17 @@
 
 ### 🧑‍💻 Coding Guidelines
 
-* Use **TypeScript** throughout the codebase
-* Prefer **functional, modular design**
-* Follow file structure conventions (`/app`, `/lib`, `/public`)
-* Use `pnpm` for dependency management
+- Use **TypeScript** throughout the codebase
+- Prefer **functional, modular design**
+- Follow file structure conventions (`/app`, `/lib`, `/public`)
+- Use `pnpm` for dependency management
 
 ### ✅ Checklist for PRs
 
-* [ ] Code compiles and passes `pnpm lint`
-* [ ] No secrets or personal data committed
-* [ ] New logic is covered with tests (if applicable)
-* [ ] Related docs updated (`/docs/*`)
+- [ ] Code compiles and passes `pnpm lint`
+- [ ] No secrets or personal data committed
+- [ ] New logic is covered with tests (if applicable)
+- [ ] Related docs updated (`/docs/*`)
 
 ### 💡 Useful Commands
 
