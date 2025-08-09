@@ -1,46 +1,56 @@
-# Use an official Node.js runtime as a parent image.
-# Using the 'alpine' variant for a smaller image size.
-FROM node:20-alpine
+###############################
+# Multi-stage Dockerfile for Next.js (pnpm)
+# Stages: base → deps → builder → runner (prod) | dev (hot-reload)
+###############################
 
-# Install git, which is necessary to clone the repository.
-# --no-cache cleans up the package manager cache to keep the image small.
-RUN apk add --no-cache git
-
-# Set the working directory in the container.
-# All subsequent commands (RUN, CMD, etc.) will be executed from this directory.
+# ===== Base (shared) =====
+FROM node:20-alpine AS base
 WORKDIR /app
+ENV NODE_ENV=production
+RUN apk add --no-cache libc6-compat
 
-# Install pnpm globally in the container.
-RUN npm install -g pnpm
+# Install pnpm explicitly for reliability in CI/CD and containers
+RUN npm i -g pnpm@9
 
-# --- Environment Variable Setup ---
-# Declare a build-time argument. You will pass your key to this argument
-# when you run the 'docker build' command.
-ARG OPENAI_API_KEY_ARG
+# ===== Deps (install dependencies with cache) =====
+FROM base AS deps
+ENV NODE_ENV=development
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-# --- Application Setup ---
-# Clone your specific GitHub repository into the current working directory (/app).
-RUN git clone https://github.com/saviobatista/vitae.git .
+# ===== Builder (compile Next.js to standalone) =====
+FROM base AS builder
+ENV NODE_ENV=production
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN pnpm build
 
-# Create the .env.local file and write the API key to it.
-# This command takes the value from the build argument and saves it inside the container.
-# It's important that this file is created before the build/run step of your app.
-RUN echo "OPENAI_API_KEY=${OPENAI_API_KEY_ARG}" > .env.local
+# ===== Runner (production image) =====
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+RUN apk add --no-cache libc6-compat \
+  && addgroup -g 1001 -S nodejs \
+  && adduser -S nextjs -u 1001
 
+# Only copy what we need to run the standalone server
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/package.json ./package.json
 
-# Install project dependencies using pnpm.
-# pnpm will read the package.json and pnpm-lock.yaml files to install the exact versions.
-RUN pnpm install
+# Runtime envs (secrets should be injected at runtime, not baked at build time)
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+EXPOSE 3000
+USER nextjs
+CMD ["node", "server.js"]
 
-# Expose the port the app runs on.
-# The vitae project uses Vite, which defaults to port 5173.
-# This makes the port accessible from outside the container.
-EXPOSE 5173
-
-# Define the command to run your app.
-# This will start the development server when the container starts.
+# ===== Dev (hot reload with bind mount) =====
+FROM base AS dev
+ENV NODE_ENV=development
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+# Source will be bind-mounted in docker-compose for instant reload
+EXPOSE 3000
 CMD ["pnpm", "dev"]
-
-# Use:
-# docker run -p 5173:3000 vitae
-# to run it.
