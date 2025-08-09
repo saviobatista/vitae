@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Produce a minimal standalone server for Docker runner stage
+  output: "standalone",
 };
 
 export default nextConfig;
