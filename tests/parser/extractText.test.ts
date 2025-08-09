@@ -63,10 +63,8 @@ describe("extractText", () => {
 
   it("throws a friendly error for invalid input bytes", async () => {
     const fake = Buffer.from("Not a PDF");
-    await expect(
-      extractText(
-        fake.buffer.slice(fake.byteOffset, fake.byteOffset + fake.byteLength)
-      )
-    ).rejects.toThrow(PdfTextExtractionError);
+    await expect(extractText(toArrayBuffer(fake))).rejects.toThrow(
+      PdfTextExtractionError
+    );
   });
 });

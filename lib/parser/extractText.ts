@@ -1,9 +1,4 @@
-export class PdfTextExtractionError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "PdfTextExtractionError";
-  }
-}
+import { PdfTextExtractionError } from "../types";
 
 function normalizeWhitespace(input: string): string {
   // Normalize line endings and whitespace, collapse multiples
@@ -31,10 +26,12 @@ export async function extractText(buffer: ArrayBuffer): Promise<string> {
     const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
     // Reduce noisy logs in Node test environment
     try {
-      if (typeof (pdfjs as any).setVerbosityLevel === "function") {
-        (pdfjs as any).setVerbosityLevel(
-          (pdfjs as any).VerbosityLevel?.ERRORS ?? 0
-        );
+      const pdfjsAny = pdfjs as {
+        setVerbosityLevel?: (level: number) => void;
+        VerbosityLevel?: { ERRORS?: number };
+      };
+      if (typeof pdfjsAny.setVerbosityLevel === "function") {
+        pdfjsAny.setVerbosityLevel(pdfjsAny.VerbosityLevel?.ERRORS ?? 0);
       }
     } catch {}
 
@@ -42,7 +39,7 @@ export async function extractText(buffer: ArrayBuffer): Promise<string> {
       data: buffer,
       isEvalSupported: false,
       useSystemFonts: true,
-    } as any);
+    });
     const pdf = await loadingTask.promise;
 
     const pageTexts: string[] = [];
@@ -51,7 +48,17 @@ export async function extractText(buffer: ArrayBuffer): Promise<string> {
       const page = await pdf.getPage(pageNum);
       const content = await page.getTextContent();
       const strings = content.items
-        .map((item: any) => (typeof item.str === "string" ? item.str : ""))
+        .map((item: unknown) => {
+          if (
+            typeof item === "object" &&
+            item !== null &&
+            "str" in item &&
+            typeof (item as { str: unknown }).str === "string"
+          ) {
+            return (item as { str: string }).str;
+          }
+          return "";
+        })
         .filter(Boolean);
       // Join strings with spaces, then normalize
       const pageText = normalizeWhitespace(strings.join(" "));
@@ -60,9 +67,9 @@ export async function extractText(buffer: ArrayBuffer): Promise<string> {
 
     const combined = pageTexts.join("\n\n");
     return normalizeWhitespace(combined);
-  } catch (error: any) {
+  } catch (error: unknown) {
     const message =
-      typeof error?.message === "string"
+      error instanceof Error && typeof error.message === "string"
         ? error.message
         : "Unknown PDF parsing error";
     if (/Password.*required|Encrypted PDF/i.test(message)) {
@@ -81,4 +88,5 @@ export async function extractText(buffer: ArrayBuffer): Promise<string> {
   }
 }
 
+export { PdfTextExtractionError };
 export default extractText;
