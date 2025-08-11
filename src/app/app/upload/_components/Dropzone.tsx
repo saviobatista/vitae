@@ -44,7 +44,7 @@ export default function Dropzone({
       />
       <div className="text-5xl mb-3">📄</div>
       <p className="font-medium text-slate-800 dark:text-slate-200">
-        Arraste seu PDF aqui
+        Drag your PDF here
       </p>
       <p className="text-sm text-slate-500 dark:text-slate-400">ou</p>
       <button
@@ -52,10 +52,10 @@ export default function Dropzone({
         onClick={pick}
         className="mt-3 rounded-md bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
       >
-        Selecionar arquivo
+        Select file
       </button>
       <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
-        Apenas .pdf • Máx 5MB
+        Only .pdf • Max 5MB
       </p>
     </div>
   );

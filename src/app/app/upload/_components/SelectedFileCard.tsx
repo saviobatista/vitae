@@ -20,7 +20,7 @@ export default function SelectedFileCard({
         onClick={onClear}
         className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
       >
-        Remover
+        Remove
       </button>
     </div>
   );

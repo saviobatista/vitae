@@ -27,10 +27,10 @@ export default function BuilderPage() {
           Builder
         </h1>
         <p className="mt-3 text-slate-700 dark:text-slate-300">
-          Arquivo recebido: <strong>{file.name}</strong> • {sizeMB} MB
+          File received: <strong>{file.name}</strong> • {sizeMB} MB
         </p>
         <p className="mt-2 text-slate-600 dark:text-slate-400">
-          Remodelação do PDF aqui posteriormente
+          PDF remodeling here later
         </p>
       </div>
     </main>
