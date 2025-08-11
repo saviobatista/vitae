@@ -65,3 +65,41 @@ export interface PdfJsModule {
   };
   [key: string]: unknown;
 }
+
+/**
+ * Validation for ResumePDF
+ */
+
+export type ValidationIssue = "NOT_PDF" | "TOO_LARGE";
+export interface ValidationResult {
+  ok: boolean;
+  issues: ValidationIssue[];
+  errors: string[];
+}
+
+/**
+ * dropZone for resume
+ */
+export type DropzoneProps = {
+  accept?: string;
+  onFile: (file?: File) => void;
+};
+
+/**
+ * Props errors upload
+ */
+export type FileErrorsProps = { errors: string[] };
+
+/**
+ * FileCard upload PDF
+ */
+export type SelectedFileCardProps = { file: File; onClear: () => void };
+
+/**
+ * Hold file memo
+ */
+export type UploadContextValue = {
+  file: File | null;
+  setFile: (f: File | null) => void;
+  clear: () => void;
+};

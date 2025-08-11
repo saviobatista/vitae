@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
@@ -271,12 +273,12 @@ export default function Home() {
               </svg>
               View on GitHub
             </a>
-            <a
-              href="#"
+            <Link
+              href="/app/upload"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </section>
