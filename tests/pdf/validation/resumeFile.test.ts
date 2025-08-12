@@ -6,42 +6,42 @@ import {
   validateResumeFile,
 } from "../../../lib/validation/resumeFile";
 
-function fakeFile(name: string, sizeBytes: number, type = ""): File {
-  return { name, size: sizeBytes, type } as unknown as File;
+function fakeFile(name: string, size: number, type = ""): File {
+  return { name, size, type } as unknown as File;
 }
 
 describe("validation/resumeFile", () => {
   describe("isPdf", () => {
-    it("retorna true quando MIME é application/pdf", () => {
+    it("returns true when MIME type is application/pdf", () => {
       const f = fakeFile("cv.pdf", 1000, "application/pdf");
       expect(isPdf(f)).toBe(true);
     });
 
-    it("retorna true quando extensão é .PDF mesmo sem MIME (case-insensitive)", () => {
-      const f = fakeFile("meu-curriculo.PDF", 1000, "");
+    it("returns true when extension is .PDF even without MIME type (case-insensitive)", () => {
+      const f = fakeFile("my-resume.PDF", 1000, "");
       expect(isPdf(f)).toBe(true);
     });
 
-    it("retorna false quando não é PDF (png)", () => {
-      const f = fakeFile("foto.png", 1000, "image/png");
+    it("returns false when file is not a PDF (png)", () => {
+      const f = fakeFile("photo.png", 1000, "image/png");
       expect(isPdf(f)).toBe(false);
     });
   });
 
   describe("isUnderLimit", () => {
-    it("retorna true quando size <= MAX_FILE_BYTES (limite exato)", () => {
+    it("returns true when size <= MAX_FILE_BYTES (exact limit)", () => {
       const f = fakeFile("cv.pdf", MAX_FILE_BYTES, "application/pdf");
       expect(isUnderLimit(f, MAX_FILE_BYTES)).toBe(true);
     });
 
-    it("retorna false quando size > MAX_FILE_BYTES", () => {
+    it("returns false when size > MAX_FILE_BYTES", () => {
       const f = fakeFile("cv.pdf", MAX_FILE_BYTES + 1, "application/pdf");
       expect(isUnderLimit(f, MAX_FILE_BYTES)).toBe(false);
     });
   });
 
   describe("validateResumeFile", () => {
-    it("OK quando é PDF válido e <= 5MB", () => {
+    it("OK when file is a valid PDF and <= 5MB", () => {
       const f = fakeFile("cv.pdf", 1 * 1024 * 1024, "application/pdf");
       const res = validateResumeFile(f);
       expect(res.ok).toBe(true);
@@ -49,8 +49,8 @@ describe("validation/resumeFile", () => {
       expect(res.errors).toEqual([]);
     });
 
-    it("NOT_PDF quando extensão/MIME não for PDF", () => {
-      const f = fakeFile("foto.png", 500_000, "image/png");
+    it("NOT_PDF when extension/MIME is not PDF", () => {
+      const f = fakeFile("photo.png", 500_000, "image/png");
       const res = validateResumeFile(f);
       expect(res.ok).toBe(false);
       expect(res.issues).toContain("NOT_PDF");
@@ -58,7 +58,7 @@ describe("validation/resumeFile", () => {
       expect(res.issues).not.toContain("TOO_LARGE");
     });
 
-    it("TOO_LARGE quando tamanho excede 5MB", () => {
+    it("TOO_LARGE when file size exceeds 5MB", () => {
       const f = fakeFile("cv.pdf", MAX_FILE_BYTES + 10, "application/pdf");
       const res = validateResumeFile(f);
       expect(res.ok).toBe(false);
@@ -67,8 +67,8 @@ describe("validation/resumeFile", () => {
       expect(res.issues).not.toContain("NOT_PDF");
     });
 
-    it("NOT_PDF e TOO_LARGE quando ambos falham", () => {
-      const f = fakeFile("arquivo.xyz", MAX_FILE_BYTES + 10, "");
+    it("NOT_PDF and TOO_LARGE when both validations fail", () => {
+      const f = fakeFile("file.xyz", MAX_FILE_BYTES + 10, "");
       const res = validateResumeFile(f);
       expect(res.ok).toBe(false);
       expect(res.issues).toEqual(

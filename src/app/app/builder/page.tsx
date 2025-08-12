@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useUpload } from "../../../../lib/state/uploadContext";
+import { useUpload } from "@/app/app/lib/state/uploadContext";
 
 export default function BuilderPage() {
   const router = useRouter();

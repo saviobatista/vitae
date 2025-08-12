@@ -10,7 +10,7 @@ import {
 import Dropzone from "./_components/Dropzone";
 import FileErrors from "./_components/FileErrors";
 import SelectedFileCard from "./_components/SelectedFileCard";
-import { useUpload } from "../../../../lib/state/uploadContext";
+import { useUpload } from "../lib/state/uploadContext";
 
 export default function UploadPage() {
   const router = useRouter();

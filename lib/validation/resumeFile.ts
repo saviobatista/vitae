@@ -6,17 +6,14 @@ export function isPdf(file: File): boolean {
   const type = (file.type || "").toLowerCase().trim();
   const name = (file.name || "").toLowerCase().trim();
 
-  const pdfMimes = new Set([
-    "application/pdf",
-    "application/x-pdf",
-    "application/acrobat",
-    "applications/vnd.pdf",
-    "text/pdf",
-    "text/x-pdf",
-  ]);
+  const pdfMimes = new Set(["application/pdf"]);
 
   const looksLikePdfMime = type ? pdfMimes.has(type) : false;
   const looksLikePdfExt = name.endsWith(".pdf");
+
+  if (type === "application/octet-stream") {
+    return looksLikePdfExt;
+  }
 
   return looksLikePdfMime || looksLikePdfExt;
 }
@@ -37,13 +34,13 @@ export function validateResumeFile(
 
   if (!isPdf(file)) {
     issues.push("NOT_PDF");
-    errors.push("O arquivo precisa ser um PDF (.pdf).");
+    errors.push("The file must be a PDF (.pdf).");
   }
 
   if (!isUnderLimit(file, maxBytes)) {
     issues.push("TOO_LARGE");
     errors.push(
-      "Tamanho máximo permitido é 5MB. Se necessário, compacte seu PDF."
+      `Maximum allowed size is ${maxBytes / 1024 / 1024}MB. If necessary, compress your PDF.`
     );
   }
 
