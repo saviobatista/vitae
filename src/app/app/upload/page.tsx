@@ -2,14 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useCallback } from "react";
-import {
-  MAX_FILE_BYTES,
-  validateResumeFile,
-} from "../../../../lib/validation/resumeFile";
 
 import Dropzone from "./_components/Dropzone";
 import FileErrors from "./_components/FileErrors";
 import SelectedFileCard from "./_components/SelectedFileCard";
+import { MAX_FILE_BYTES, validateResumeFile } from "lib/validation/resumeFile";
 import { useUpload } from "../lib/state/uploadContext";
 
 export default function UploadPage() {
