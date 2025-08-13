@@ -1,4 +1,4 @@
-import { PdfTextExtractionError } from "../types";
+import { PdfTextExtractionError } from "@/types";
 
 function normalizeWhitespace(input: string): string {
   // Normalize line endings and whitespace, collapse multiples
