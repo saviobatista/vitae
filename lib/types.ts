@@ -46,8 +46,7 @@ export interface PdfDocument {
  */
 export interface PdfLoadingTaskOptions {
   data: ArrayBuffer;
-  isEvalSupported: boolean;
-  useSystemFonts: boolean;
+  standardFontDataUrl?: string;
   [key: string]: unknown;
 }
 
