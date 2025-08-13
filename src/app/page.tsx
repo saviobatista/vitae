@@ -6,8 +6,8 @@ export default function Home() {
       {/* Header */}
       <header className="container mx-auto px-6 py-8">
         <div className="text-center">
-          <div className="flex justify-center mb-6">
-            <div className="w-[120px] h-[120px] text-slate-50 dark:text-slate-600">
+          <div className="mb-6 flex justify-center">
+            <div className="h-[120px] w-[120px] text-slate-50 dark:text-slate-600">
               <svg
                 width="120"
                 height="120"
@@ -59,10 +59,10 @@ export default function Home() {
               </svg>
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-2">
+          <p className="mb-2 text-xl text-slate-600 md:text-2xl dark:text-slate-300">
             Transform your résumé. Tailor your future.
           </p>
-          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
+          <p className="mx-auto max-w-3xl text-lg text-slate-500 dark:text-slate-400">
             An open source, AI-powered résumé tailoring tool. Upload your CV,
             paste a job description, and let the system reshape your
             professional story to match the role.
@@ -72,13 +72,13 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
+        <h2 className="mb-12 text-center text-3xl font-bold text-slate-800 dark:text-slate-200">
           ✨ Features
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-3xl mb-4">📄</div>
-            <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl dark:bg-slate-800">
+            <div className="mb-4 text-3xl">📄</div>
+            <h3 className="mb-3 text-xl font-semibold text-slate-800 dark:text-slate-200">
               Upload & Parse
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
@@ -87,9 +87,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-3xl mb-4">🧠</div>
-            <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">
+          <div className="rounded-xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl dark:bg-slate-800">
+            <div className="mb-4 text-3xl">🧠</div>
+            <h3 className="mb-3 text-xl font-semibold text-slate-800 dark:text-slate-200">
               AI-Powered Tailoring
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
@@ -98,9 +98,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-3xl mb-4">📚</div>
-            <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">
+          <div className="rounded-xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl dark:bg-slate-800">
+            <div className="mb-4 text-3xl">📚</div>
+            <h3 className="mb-3 text-xl font-semibold text-slate-800 dark:text-slate-200">
               LaTeX Export
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
@@ -109,9 +109,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-3xl mb-4">🌐</div>
-            <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">
+          <div className="rounded-xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl dark:bg-slate-800">
+            <div className="mb-4 text-3xl">🌐</div>
+            <h3 className="mb-3 text-xl font-semibold text-slate-800 dark:text-slate-200">
               Browser-Based
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
@@ -120,9 +120,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-3xl mb-4">⚙️</div>
-            <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">
+          <div className="rounded-xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl dark:bg-slate-800">
+            <div className="mb-4 text-3xl">⚙️</div>
+            <h3 className="mb-3 text-xl font-semibold text-slate-800 dark:text-slate-200">
               Plugin-Ready
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
@@ -131,9 +131,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-3xl mb-4">🚀</div>
-            <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">
+          <div className="rounded-xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl dark:bg-slate-800">
+            <div className="mb-4 text-3xl">🚀</div>
+            <h3 className="mb-3 text-xl font-semibold text-slate-800 dark:text-slate-200">
               Open Source
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
@@ -146,16 +146,16 @@ export default function Home() {
 
       {/* How It Works Section */}
       <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
+        <h2 className="mb-12 text-center text-3xl font-bold text-slate-800 dark:text-slate-200">
           🧠 How It Works
         </h2>
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
                 1
               </div>
-              <h3 className="font-semibold mb-2 text-slate-800 dark:text-slate-200">
+              <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
                 Upload
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -164,10 +164,10 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
                 2
               </div>
-              <h3 className="font-semibold mb-2 text-slate-800 dark:text-slate-200">
+              <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
                 Extract
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -176,10 +176,10 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
                 3
               </div>
-              <h3 className="font-semibold mb-2 text-slate-800 dark:text-slate-200">
+              <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
                 Paste
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -188,10 +188,10 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
                 4
               </div>
-              <h3 className="font-semibold mb-2 text-slate-800 dark:text-slate-200">
+              <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
                 Generate
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -200,10 +200,10 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
                 5
               </div>
-              <h3 className="font-semibold mb-2 text-slate-800 dark:text-slate-200">
+              <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
                 Export
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -216,14 +216,14 @@ export default function Home() {
 
       {/* Tech Stack Section */}
       <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-slate-200">
+        <h2 className="mb-12 text-center text-3xl font-bold text-slate-800 dark:text-slate-200">
           🛠 Tech Stack
         </h2>
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
-            <div className="grid md:grid-cols-2 gap-8">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-slate-800">
+            <div className="grid gap-8 md:grid-cols-2">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">
+                <h3 className="mb-4 text-xl font-semibold text-slate-800 dark:text-slate-200">
                   Frontend & Hosting
                 </h3>
                 <ul className="space-y-2 text-slate-600 dark:text-slate-400">
@@ -233,7 +233,7 @@ export default function Home() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">
+                <h3 className="mb-4 text-xl font-semibold text-slate-800 dark:text-slate-200">
                   AI & Processing
                 </h3>
                 <ul className="space-y-2 text-slate-600 dark:text-slate-400">
@@ -250,18 +250,18 @@ export default function Home() {
       {/* CTA Section */}
       <section className="container mx-auto px-6 py-12">
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-6 text-slate-800 dark:text-slate-200">
+          <h2 className="mb-6 text-3xl font-bold text-slate-800 dark:text-slate-200">
             Ready to transform your résumé?
           </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href="https://github.com/saviobatista/vitae"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl"
             >
               <svg
-                className="w-5 h-5 mr-2"
+                className="mr-2 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -275,7 +275,7 @@ export default function Home() {
             </a>
             <Link
               href="/app/upload"
-              className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-slate-300 px-8 py-4 font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               Get Started
             </Link>
@@ -284,7 +284,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="container mx-auto px-6 py-8 border-t border-slate-200 dark:border-slate-700">
+      <footer className="container mx-auto border-t border-slate-200 px-6 py-8 dark:border-slate-700">
         <div className="text-center text-slate-500 dark:text-slate-400">
           <p className="mb-2">
             <strong>Vitae</strong> is Latin for &ldquo;life&rdquo; — and the

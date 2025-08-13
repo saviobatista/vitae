@@ -52,7 +52,7 @@ export default function UploadPage() {
         <form
           onSubmit={submit}
           noValidate
-          className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow"
+          className="rounded-xl bg-white p-6 shadow dark:bg-slate-900"
         >
           <Dropzone accept="application/pdf" onFile={handleFile} />
 
@@ -73,7 +73,7 @@ export default function UploadPage() {
             <button
               type="submit"
               disabled={!file || errors.length > 0}
-              className="rounded-md bg-blue-600 px-5 py-2 font-semibold text-white enabled:hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="rounded-md bg-blue-600 px-5 py-2 font-semibold text-white enabled:hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Continue
             </button>

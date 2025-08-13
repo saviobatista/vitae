@@ -7,11 +7,12 @@ export function isPdf(file: File): boolean {
   const name = (file.name || "").toLowerCase().trim();
 
   const pdfMimes = new Set(["application/pdf"]);
+  const othersMimes = new Set(["application/octet-stream"]);
 
   const looksLikePdfMime = type ? pdfMimes.has(type) : false;
   const looksLikePdfExt = name.endsWith(".pdf");
 
-  if (type === "application/octet-stream") {
+  if (othersMimes.has(type)) {
     return looksLikePdfExt;
   }
 

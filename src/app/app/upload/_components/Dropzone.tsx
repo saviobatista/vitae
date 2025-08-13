@@ -31,8 +31,7 @@ export default function Dropzone({
       onDrop={onDrop}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
-      className={`border-2 border-dashed rounded-lg p-8 text-center transition 
-        ${dragging ? "border-blue-500 bg-blue-50/60 dark:bg-blue-500/10" : "border-slate-300 dark:border-slate-700"}`}
+      className={`rounded-lg border-2 border-dashed p-8 text-center transition ${dragging ? "border-blue-500 bg-blue-50/60 dark:bg-blue-500/10" : "border-slate-300 dark:border-slate-700"}`}
       aria-label="Arraste e solte seu PDF aqui"
     >
       <input
@@ -42,7 +41,7 @@ export default function Dropzone({
         onChange={onInput}
         className="hidden"
       />
-      <div className="text-5xl mb-3">📄</div>
+      <div className="mb-3 text-5xl">📄</div>
       <p className="font-medium text-slate-800 dark:text-slate-200">
         Drag your PDF here
       </p>
