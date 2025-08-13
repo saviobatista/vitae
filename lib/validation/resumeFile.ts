@@ -31,23 +31,22 @@ export function validateResumeFile(
   maxBytes: number = MAX_FILE_BYTES
 ): ValidationResult {
   const issues: ValidationIssue[] = [];
-  const errors: string[] = [];
 
   if (!isPdf(file)) {
     issues.push("NOT_PDF");
-    errors.push("The file must be a PDF (.pdf).");
+  }
+
+  if (file.size === 0) {
+    issues.push("EMPTY_FILE");
   }
 
   if (!isUnderLimit(file, maxBytes)) {
     issues.push("TOO_LARGE");
-    errors.push(
-      `Maximum allowed size is ${maxBytes / 1024 / 1024}MB. If necessary, compress your PDF.`
-    );
   }
 
   return {
     ok: issues.length === 0,
     issues,
-    errors,
+    errors: [],
   };
 }

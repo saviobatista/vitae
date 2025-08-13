@@ -1,10 +1,10 @@
-import { describe, it, expect } from "vitest";
 import {
   isPdf,
   isUnderLimit,
   MAX_FILE_BYTES,
   validateResumeFile,
-} from "../../../lib/validation/resumeFile";
+} from "lib/validation/resumeFile";
+import { describe, it, expect } from "vitest";
 
 function fakeFile(name: string, size: number, type = ""): File {
   return { name, size, type } as unknown as File;
@@ -25,6 +25,13 @@ describe("validation/resumeFile", () => {
     it("returns false when file is not a PDF (png)", () => {
       const f = fakeFile("photo.png", 1000, "image/png");
       expect(isPdf(f)).toBe(false);
+    });
+
+    it("treats application/octet-stream as PDF only if extension is .pdf", () => {
+      const f1 = fakeFile("cv.pdf", 1000, "application/octet-stream");
+      const f2 = fakeFile("cv.txt", 1000, "application/octet-stream");
+      expect(isPdf(f1)).toBe(true);
+      expect(isPdf(f2)).toBe(false);
     });
   });
 
@@ -54,8 +61,9 @@ describe("validation/resumeFile", () => {
       const res = validateResumeFile(f);
       expect(res.ok).toBe(false);
       expect(res.issues).toContain("NOT_PDF");
-      expect(res.errors.join(" ")).toMatch(/pdf/i);
       expect(res.issues).not.toContain("TOO_LARGE");
+      expect(res.issues).not.toContain("EMPTY_FILE");
+      expect(res.errors).toEqual([]);
     });
 
     it("TOO_LARGE when file size exceeds 5MB", () => {
@@ -63,8 +71,17 @@ describe("validation/resumeFile", () => {
       const res = validateResumeFile(f);
       expect(res.ok).toBe(false);
       expect(res.issues).toContain("TOO_LARGE");
-      expect(res.errors.join(" ")).toMatch(/5mb/i);
       expect(res.issues).not.toContain("NOT_PDF");
+      expect(res.issues).not.toContain("EMPTY_FILE");
+      expect(res.errors).toEqual([]);
+    });
+
+    it("EMPTY_FILE when file size is 0", () => {
+      const f = fakeFile("cv.pdf", 0, "application/pdf");
+      const res = validateResumeFile(f);
+      expect(res.ok).toBe(false);
+      expect(res.issues).toEqual(["EMPTY_FILE"]);
+      expect(res.errors).toEqual([]);
     });
 
     it("NOT_PDF and TOO_LARGE when both validations fail", () => {
@@ -74,7 +91,7 @@ describe("validation/resumeFile", () => {
       expect(res.issues).toEqual(
         expect.arrayContaining(["NOT_PDF", "TOO_LARGE"])
       );
-      expect(res.errors.length).toBeGreaterThanOrEqual(2);
+      expect(res.errors).toEqual([]);
     });
   });
 });

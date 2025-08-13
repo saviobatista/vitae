@@ -70,7 +70,7 @@ export interface PdfJsModule {
  * Validation for ResumePDF
  */
 
-export type ValidationIssue = "NOT_PDF" | "TOO_LARGE";
+export type ValidationIssue = "NOT_PDF" | "TOO_LARGE" | "EMPTY_FILE";
 export interface ValidationResult {
   ok: boolean;
   issues: ValidationIssue[];
@@ -89,6 +89,8 @@ export type DropzoneProps = {
  * Props errors upload
  */
 export type FileErrorsProps = { errors: string[] };
+
+export type Props = FileErrorsProps & { maxMB?: number };
 
 /**
  * FileCard upload PDF

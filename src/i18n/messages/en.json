@@ -1,0 +1,25 @@
+{
+  "page": {
+    "upload": {
+      "title": "Send your resume (PDF)",
+      "subtitle": "We only accept PDF files, up to {mb} MB.",
+      "actions": {
+        "return": "Return",
+        "continue": "Continue"
+      },
+      "dropzone": {
+        "dragHere": "Drag your PDF here",
+        "or": "or",
+        "selectFile": "Select file",
+        "onlyPdf": "Only PDF",
+        "maxSize": "Max {mb} MB",
+        "dropAria": "Drag and drop your PDF here"
+      }
+    }
+  },
+  "errors": {
+    "NOT_PDF": "The file must be a PDF (.pdf).",
+    "EMPTY_FILE": "The file is empty.",
+    "TOO_LARGE": "The file exceeds {maxMB} MB."
+  }
+}

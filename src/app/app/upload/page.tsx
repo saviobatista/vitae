@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState, useCallback } from "react";
 
 import Dropzone from "./_components/Dropzone";
@@ -11,6 +12,8 @@ import { useUpload } from "../lib/state/uploadContext";
 
 export default function UploadPage() {
   const router = useRouter();
+  const t = useTranslations("page.upload");
+
   const { file, setFile, clear } = useUpload();
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -33,16 +36,17 @@ export default function UploadPage() {
     [file, errors, router]
   );
 
+  const maxMB = (MAX_FILE_BYTES / (1024 * 1024)).toFixed(0);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto max-w-2xl px-6 py-12">
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-            Send your resume (PDF)
+            {t("title")}
           </h1>
           <p className="mt-2 text-slate-600 dark:text-slate-400">
-            We only accept PDF files, up to{" "}
-            {(MAX_FILE_BYTES / (1024 * 1024)).toFixed(0)}MB.
+            {t("subtitle", { mb: maxMB })}
           </p>
         </header>
 
@@ -65,14 +69,14 @@ export default function UploadPage() {
               onClick={() => router.back()}
               className="rounded-md border border-slate-300 px-4 py-2 text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
             >
-              Return
+              {t("actions.return")}
             </button>
             <button
               type="submit"
               disabled={!file || errors.length > 0}
               className="rounded-md bg-blue-600 px-5 py-2 font-semibold text-white enabled:hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Continue
+              {t("actions.continue")}
             </button>
           </div>
         </form>
