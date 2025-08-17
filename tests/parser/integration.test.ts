@@ -3,8 +3,8 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
-import extractText from "../../lib/parser/extractText";
-import segmentBlocks from "../../lib/parser/segmentBlocks";
+import extractText from "@/parser/extractText";
+import segmentBlocks from "@/parser/segmentBlocks";
 
 const fixturesDir = path.resolve(__dirname, "..", "fixtures");
 const singlePdfPath = path.join(fixturesDir, "sample.pdf");

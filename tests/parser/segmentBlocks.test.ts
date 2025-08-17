@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { segmentBlocks } from "../../lib/parser/segmentBlocks";
+import { segmentBlocks } from "@/parser/segmentBlocks";
 
 describe("segmentBlocks", () => {
   const sampleResumeText = `Alexandre Pereira da Costa Email: alex.pereira@example.com | Phone: +55 11 98765-4321 | LinkedIn: linkedin.com/in/alexpereira | GitHub: github.com/alexpereira

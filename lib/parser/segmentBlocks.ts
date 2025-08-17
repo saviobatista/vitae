@@ -1,4 +1,4 @@
-import { SegmentationResult, SegmentationError } from "../types";
+import { SegmentationResult, SegmentationError } from "@/types";
 import {
   SECTION_PATTERNS,
   JOB_INDICATORS,
@@ -6,7 +6,7 @@ import {
   CONFIDENCE_CONSTANTS,
   SKILL_PATTERNS,
   SECTION_PROCESSING_CONFIG,
-} from "./config";
+} from "@/parser/config";
 import {
   SectionDetectionResult,
   ProcessingBlocks,
@@ -14,7 +14,7 @@ import {
   SkillsExtractionResult,
   WarningContext,
   ResultBuildingContext,
-} from "./types";
+} from "@/parser/types";
 
 /**
  * Normalize section labels to standard keys

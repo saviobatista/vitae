@@ -3,9 +3,7 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
-import extractText, {
-  PdfTextExtractionError,
-} from "../../lib/parser/extractText";
+import extractText, { PdfTextExtractionError } from "@/parser/extractText";
 
 const fixturesDir = path.resolve(__dirname, "..", "fixtures");
 const singlePdfPath = path.join(fixturesDir, "sample.pdf");
