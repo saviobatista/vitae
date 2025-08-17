@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState, useCallback } from "react";
 
-import Dropzone from "./_components/Dropzone";
-import FileErrors from "./_components/FileErrors";
-import SelectedFileCard from "./_components/SelectedFileCard";
 import { MAX_FILE_BYTES, validateResumeFile } from "lib/validation/resumeFile";
-import { useUpload } from "../lib/state/uploadContext";
+import { useUpload } from "@/app/lib/state/uploadContext";
+import Dropzone from "@/app/upload/_components/Dropzone";
+import FileErrors from "@/app/upload/_components/FileErrors";
+import SelectedFileCard from "@/app/upload/_components/SelectedFileCard";
 
 export default function UploadPage() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function UploadPage() {
     (f?: File) => {
       if (!f) return;
       const res = validateResumeFile(f);
-      setErrors(res.errors);
+      setErrors(res.issues);
       setFile(res.ok ? f : null);
     },
     [setFile]
@@ -31,7 +31,7 @@ export default function UploadPage() {
     (e: React.FormEvent) => {
       e.preventDefault();
       if (!file || errors.length) return;
-      router.push("/app/builder");
+      router.push("/builder");
     },
     [file, errors, router]
   );

@@ -73,7 +73,6 @@ export type ValidationIssue = "NOT_PDF" | "TOO_LARGE" | "EMPTY_FILE";
 export interface ValidationResult {
   ok: boolean;
   issues: ValidationIssue[];
-  errors: string[];
 }
 
 /**
@@ -87,9 +86,10 @@ export type DropzoneProps = {
 /**
  * Props errors upload
  */
-export type FileErrorsProps = { errors: string[] };
-
-export type Props = FileErrorsProps & { maxMB?: number };
+export type FileUploadProps = {
+  errors: string[];
+  maxMB?: number;
+};
 
 /**
  * FileCard upload PDF

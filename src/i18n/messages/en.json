@@ -15,11 +15,20 @@
         "maxSize": "Max {mb} MB",
         "dropAria": "Drag and drop your PDF here"
       }
+    },
+    "builder": {
+      "fileReceived": "File received: <strong>{name}</strong> {sep} {sizeMB} MB",
+      "pdfRemodeling": "PDF remodeling here later"
     }
   },
   "errors": {
     "NOT_PDF": "The file must be a PDF (.pdf).",
     "EMPTY_FILE": "The file is empty.",
     "TOO_LARGE": "The file exceeds {maxMB} MB."
+  },
+  "common": {
+    "sep": {
+      "middot": "\\u2022"
+    }
   }
 }

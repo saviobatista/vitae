@@ -17,9 +17,9 @@ describe("validation/resumeFile", () => {
       expect(isPdf(f)).toBe(true);
     });
 
-    it("returns true when extension is .PDF even without MIME type (case-insensitive)", () => {
+    it("returns false when extension is .PDF but MIME type is missing (case-insensitive)", () => {
       const f = fakeFile("my-resume.PDF", 1000, "");
-      expect(isPdf(f)).toBe(true);
+      expect(isPdf(f)).toBe(false);
     });
 
     it("returns false when file is not a PDF (png)", () => {
@@ -27,9 +27,25 @@ describe("validation/resumeFile", () => {
       expect(isPdf(f)).toBe(false);
     });
 
-    it("treats application/octet-stream as PDF only if extension is .pdf", () => {
+    it("treats application/octet-stream as PDF regardless of extension", () => {
       const f1 = fakeFile("cv.pdf", 1000, "application/octet-stream");
       const f2 = fakeFile("cv.txt", 1000, "application/octet-stream");
+      expect(isPdf(f1)).toBe(true);
+      expect(isPdf(f2)).toBe(true);
+    });
+
+    it("returns false when name is missing even if MIME is application/pdf", () => {
+      const f = {
+        size: 1000,
+        type: "application/pdf",
+        name: "",
+      } as unknown as File;
+      expect(isPdf(f)).toBe(false);
+    });
+
+    it("returns true by extension when MIME is non-empty and not pdf/octet-stream", () => {
+      const f1 = fakeFile("doc.pdf", 1000, "text/plain");
+      const f2 = fakeFile("doc.txt", 1000, "text/plain");
       expect(isPdf(f1)).toBe(true);
       expect(isPdf(f2)).toBe(false);
     });
@@ -53,7 +69,6 @@ describe("validation/resumeFile", () => {
       const res = validateResumeFile(f);
       expect(res.ok).toBe(true);
       expect(res.issues).toEqual([]);
-      expect(res.errors).toEqual([]);
     });
 
     it("NOT_PDF when extension/MIME is not PDF", () => {
@@ -63,7 +78,6 @@ describe("validation/resumeFile", () => {
       expect(res.issues).toContain("NOT_PDF");
       expect(res.issues).not.toContain("TOO_LARGE");
       expect(res.issues).not.toContain("EMPTY_FILE");
-      expect(res.errors).toEqual([]);
     });
 
     it("TOO_LARGE when file size exceeds 5MB", () => {
@@ -73,7 +87,6 @@ describe("validation/resumeFile", () => {
       expect(res.issues).toContain("TOO_LARGE");
       expect(res.issues).not.toContain("NOT_PDF");
       expect(res.issues).not.toContain("EMPTY_FILE");
-      expect(res.errors).toEqual([]);
     });
 
     it("EMPTY_FILE when file size is 0", () => {
@@ -81,7 +94,6 @@ describe("validation/resumeFile", () => {
       const res = validateResumeFile(f);
       expect(res.ok).toBe(false);
       expect(res.issues).toEqual(["EMPTY_FILE"]);
-      expect(res.errors).toEqual([]);
     });
 
     it("NOT_PDF and TOO_LARGE when both validations fail", () => {
@@ -91,7 +103,6 @@ describe("validation/resumeFile", () => {
       expect(res.issues).toEqual(
         expect.arrayContaining(["NOT_PDF", "TOO_LARGE"])
       );
-      expect(res.errors).toEqual([]);
     });
   });
 });

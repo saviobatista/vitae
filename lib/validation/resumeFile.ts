@@ -3,20 +3,14 @@ import { ValidationIssue, ValidationResult } from "@/types";
 export const MAX_FILE_BYTES = 5 * 1024 * 1024;
 
 export function isPdf(file: File): boolean {
-  const type = (file.type || "").toLowerCase().trim();
-  const name = (file.name || "").toLowerCase().trim();
+  if (!file.type || !file.name) return false;
+  const type = file.type.toLowerCase().trim();
+  const name = file.name.toLowerCase().trim();
 
-  const pdfMimes = new Set(["application/pdf"]);
-  const othersMimes = new Set(["application/octet-stream"]);
-
-  const looksLikePdfMime = type ? pdfMimes.has(type) : false;
-  const looksLikePdfExt = name.endsWith(".pdf");
-
-  if (othersMimes.has(type)) {
-    return looksLikePdfExt;
-  }
-
-  return looksLikePdfMime || looksLikePdfExt;
+  return (
+    new Set(["application/pdf", "application/octet-stream"]).has(type) ||
+    name.endsWith(".pdf")
+  );
 }
 
 export function isUnderLimit(
@@ -47,6 +41,5 @@ export function validateResumeFile(
   return {
     ok: issues.length === 0,
     issues,
-    errors: [],
   };
 }

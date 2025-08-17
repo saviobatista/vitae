@@ -274,7 +274,7 @@ export default function Home() {
               View on GitHub
             </a>
             <Link
-              href="/app/upload"
+              href="/upload"
               className="inline-flex items-center justify-center rounded-lg border-2 border-slate-300 px-8 py-4 font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               Get Started

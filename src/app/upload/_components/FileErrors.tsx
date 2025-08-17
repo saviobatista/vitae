@@ -1,30 +1,20 @@
 "use client";
 
+import { FileUploadProps } from "@/types";
 import { useTranslations } from "next-intl";
-import { Props } from "@/types";
 
-export default function FileErrors({ errors, maxMB = 5 }: Props) {
+export default function FileErrors({ errors, maxMB = 5 }: FileUploadProps) {
   const t = useTranslations("errors");
   if (!errors?.length) return null;
+
+  const generateMessage = (code: string): string => {
+    return code === "TOO_LARGE" ? t("TOO_LARGE", { maxMB }) : t(code);
+  };
 
   return (
     <div role="status" aria-live="polite" className="mt-4 space-y-2">
       {errors.map((code, i) => {
-        let message: string;
-        switch (code) {
-          case "NOT_PDF":
-            message = t("NOT_PDF");
-            break;
-          case "EMPTY_FILE":
-            message = t("EMPTY_FILE");
-            break;
-          case "TOO_LARGE":
-            message = t("TOO_LARGE", { maxMB });
-            break;
-          default:
-            message = code;
-        }
-
+        const message = generateMessage(code);
         return (
           <div
             key={`${code}-${i}`}
