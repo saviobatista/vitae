@@ -22,14 +22,10 @@ import {
 function normalizeSectionLabel(label: string): string {
   const lowerLabel = label.toLowerCase();
 
-  if (SECTION_PATTERNS.experience.some((pattern) => pattern.test(lowerLabel))) {
-    return "experience";
-  }
-  if (SECTION_PATTERNS.education.some((pattern) => pattern.test(lowerLabel))) {
-    return "education";
-  }
-  if (SECTION_PATTERNS.skills.some((pattern) => pattern.test(lowerLabel))) {
-    return "skills";
+  for (const [sectionKey, patterns] of Object.entries(SECTION_PATTERNS)) {
+    if (patterns.some((pattern) => pattern.test(lowerLabel))) {
+      return sectionKey;
+    }
   }
 
   return label.toLowerCase().replace(/\s+/g, "_");
@@ -142,27 +138,43 @@ function saveSectionContent(
   startLine: number,
   endLine: number
 ): void {
-  if (currentSection && currentContent.length > 0) {
-    const normalizedSection = normalizeSectionLabel(currentSection);
-    if (!blocks[normalizedSection]) {
-      blocks[normalizedSection] = [];
-    }
-
-    const sectionContent = {
-      rawContent: currentContent,
-      processedContent: currentContent.join(
-        SECTION_PROCESSING_CONFIG.LINE_SEPARATOR
-      ),
-      startLine,
-      endLine,
-    };
-
-    blocks[normalizedSection].push(sectionContent);
-
-    if (!detectedSections.includes(normalizedSection)) {
-      detectedSections.push(normalizedSection);
-    }
+  if (!currentSection || currentContent.length === 0) {
+    return;
   }
+
+  const normalizedSection = normalizeSectionLabel(currentSection);
+
+  // Ensure section exists in blocks
+  if (!blocks[normalizedSection]) {
+    blocks[normalizedSection] = [];
+  }
+
+  const sectionContent = createSectionContent(
+    currentContent,
+    startLine,
+    endLine
+  );
+  blocks[normalizedSection].push(sectionContent);
+
+  if (!detectedSections.includes(normalizedSection)) {
+    detectedSections.push(normalizedSection);
+  }
+}
+
+/**
+ * Helper function to create section content object
+ */
+function createSectionContent(
+  content: string[],
+  startLine: number,
+  endLine: number
+) {
+  return {
+    rawContent: content,
+    processedContent: content.join(SECTION_PROCESSING_CONFIG.LINE_SEPARATOR),
+    startLine,
+    endLine,
+  };
 }
 
 /**
@@ -229,7 +241,7 @@ function processSectionContent(blocks: ProcessingBlocks): FinalBlocks {
   const finalBlocks: FinalBlocks = {};
 
   for (const [sectionKey, contentArray] of Object.entries(blocks)) {
-    if (sectionKey === "experience" || sectionKey === "education") {
+    if (SECTION_PROCESSING_CONFIG.SECTIONS_WITH_BULLET_POINTS.has(sectionKey)) {
       // Merge all content and then process bullet points
       const mergedContent = contentArray
         .map((content) => content.processedContent)

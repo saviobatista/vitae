@@ -87,4 +87,5 @@ export const SECTION_PROCESSING_CONFIG = {
   MERGE_SEPARATOR: "\n\n",
   LINE_SEPARATOR: "\n",
   SKILLS_SEPARATOR: ", ",
+  SECTIONS_WITH_BULLET_POINTS: new Set(["experience", "education"]),
 } as const;
