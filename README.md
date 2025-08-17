@@ -77,16 +77,17 @@ Requirements: Docker Desktop and Docker Compose.
    ```bash
    cp .env.example .env  # then edit values
 
+   ```
+
 2. Start the dev server with live reload:
 
-    ```bash
-    docker compose up web-dev
-    ```
+   ```bash
+   docker compose up web-dev
+   ```
 
 - The app runs at http://localhost:3000
 - Source is bind-mounted; changes trigger instant reload (Turbopack)
 - Container uses its own node_modules for consistency
-
 
 ### Production (standalone image)
 
