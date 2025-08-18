@@ -64,6 +64,76 @@ OPENAI_API_KEY=sk-...
 
 ---
 
+## 🐳 Docker
+
+This repo includes a production-ready multi-stage Dockerfile and a docker-compose setup for hot-reload development.
+
+### Development (hot reload)
+
+Requirements: Docker Desktop and Docker Compose.
+
+1. Copy your env file:
+
+   ```bash
+   cp .env.example .env  # then edit values
+
+   ```
+
+2. Start the dev server with live reload:
+
+   ```bash
+   docker compose up web-dev
+   ```
+
+- The app runs at http://localhost:3000
+- Source is bind-mounted; changes trigger instant reload (Turbopack)
+- Container uses its own node_modules for consistency
+
+### Production (standalone image)
+
+Build and run the minimal runner image:
+
+```bash
+# Build the prod image
+docker build --target runner -t vitae:latest .
+
+# Run with runtime envs from .env
+docker run --rm -p 3000:3000 --env-file .env vitae:latest
+```
+
+Or via Compose:
+
+```bash
+docker compose build web
+docker compose up -d web
+```
+
+### Environment variables
+
+- Secrets are NOT baked into the image. `.env` files are ignored by Docker context via `.dockerignore`.
+- For runtime configuration, use `--env-file .env` (as in the examples) or `-e KEY=value`.
+- For client-exposed variables (`NEXT_PUBLIC_*`) that must be inlined at build time, prefer setting explicit build args in the Dockerfile and pass them with `--build-arg`. Example snippet you can add if needed:
+
+  ```dockerfile
+  # in Dockerfile (builder stage)
+  ARG NEXT_PUBLIC_ANALYTICS_ID
+  ENV NEXT_PUBLIC_ANALYTICS_ID=$NEXT_PUBLIC_ANALYTICS_ID
+  ```
+
+  Then build with:
+
+  ```bash
+  docker build --target runner -t vitae:latest . \
+    --build-arg NEXT_PUBLIC_ANALYTICS_ID=abc123
+  ```
+
+Notes:
+
+- The Dockerfile uses multi-stage builds: `deps` → `builder` → `runner` for production, and a `dev` target for local hot reload.
+- Next.js is built with `output: "standalone"` for a slim runtime image.
+
+---
+
 ## 📦 Folder Structure (Planned)
 
 ```

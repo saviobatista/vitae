@@ -104,3 +104,40 @@ export type UploadContextValue = {
   setFile: (f: File | null) => void;
   clear: () => void;
 };
+/**
+ * Interface for a single résumé block (e.g., Experience, Education, Skills)
+ */
+export interface ResumeBlock {
+  content: string;
+  confidence: number;
+  startLine: number;
+  endLine: number;
+}
+
+/**
+ * Interface for the complete segmentation result
+ */
+export interface SegmentationResult {
+  blocks: {
+    experience?: string;
+    education?: string;
+    skills?: string;
+    [key: string]: string | undefined;
+  };
+  warnings: string[];
+  metadata: {
+    totalBlocks: number;
+    confidence: number;
+    detectedSections: string[];
+  };
+}
+
+/**
+ * Custom error class for segmentation failures
+ */
+export class SegmentationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "SegmentationError";
+  }
+}
