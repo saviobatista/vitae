@@ -1,4 +1,4 @@
-import { PdfTextExtractionError } from "../types";
+import { PdfTextExtractionError } from "@/types";
 
 // Extend global interfaces for polyfills
 declare global {
