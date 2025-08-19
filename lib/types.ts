@@ -66,6 +66,45 @@ export interface PdfJsModule {
 }
 
 /**
+ * Validation for ResumePDF
+ */
+
+export type ValidationIssue = "NOT_PDF" | "TOO_LARGE" | "EMPTY_FILE";
+export interface ValidationResult {
+  ok: boolean;
+  issues: ValidationIssue[];
+}
+
+/**
+ * dropZone for resume
+ */
+export type DropzoneProps = {
+  accept?: string;
+  onFile: (file?: File) => void;
+};
+
+/**
+ * Props errors upload
+ */
+export type FileUploadProps = {
+  errors: string[];
+  maxMB?: number;
+};
+
+/**
+ * FileCard upload PDF
+ */
+export type SelectedFileCardProps = { file: File; onClear: () => void };
+
+/**
+ * Hold file memo
+ */
+export type UploadContextValue = {
+  file: File | null;
+  setFile: (f: File | null) => void;
+  clear: () => void;
+};
+/**
  * Interface for a single résumé block (e.g., Experience, Education, Skills)
  */
 export interface ResumeBlock {
