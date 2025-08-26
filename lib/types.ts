@@ -141,3 +141,13 @@ export class SegmentationError extends Error {
     this.name = "SegmentationError";
   }
 }
+
+/**
+ * Normalize and segmented resume blocks
+ */
+
+export type NormalizeOptions = {
+  newlineWhiteSpace?: boolean;
+  joinLineSection?: boolean;
+  dateRangePattern?: string[];
+};
