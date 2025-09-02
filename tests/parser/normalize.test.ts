@@ -86,8 +86,8 @@ describe("Integration: extractText + normalizeBlock", () => {
   it("end-to-end on synthetic text (no PDF)", async () => {
     const raw = [
       "Jan 2020 – Present",
-      "Desenvolvi um sis-",
-      "tema em Node.js  ",
+      "Developed a sys-",
+      "tem in Node.js  ",
       "- Bullet A",
       "- Bullet B",
       "Mar 2019 - Jul 2021",
@@ -96,7 +96,8 @@ describe("Integration: extractText + normalizeBlock", () => {
     const out = normalizeBlock(raw, L);
     const HAY = normNL(out);
 
-    const DESC_RE = /Desenvolvi\s+um\s+sistema\s+em\s+Node\.js/;
+    // Regex used in tests to match a sample description line
+    const DESC_RE = /Developed\s+a\s+system\s+in\s+Node\.js/;
     const BULLET_A_RE = /[–-][\s\u00A0]*Bullet A\b/;
     const BULLET_B_RE = /[–-][\s\u00A0]*Bullet B\b/;
 

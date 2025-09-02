@@ -131,8 +131,7 @@ export function normalizeDateRanges(
     locale
   );
   const yearYearNormalized = normalizeYearToYear(monthYearNormalized);
-  const result = yearYearNormalized;
-  return result;
+  return yearYearNormalized;
 }
 
 /** Merge extra open-range words from options into the locale (lowercased + unique). */

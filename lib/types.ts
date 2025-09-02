@@ -143,7 +143,7 @@ export class SegmentationError extends Error {
 }
 
 /**
- * Normalize and segmented resume blocks
+ * Normalize segmented resume blocks
  */
 
 export type NormalizeOptions = {
