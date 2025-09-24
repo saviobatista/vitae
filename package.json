@@ -15,7 +15,7 @@
     "prepare": "husky || true"
   },
   "dependencies": {
-    "next": "15.4.6",
+    "next": "15.4.7",
     "next-intl": "^4.3.4",
     "pdfjs-dist": "^5.4.54",
     "react": "19.1.0",
