@@ -17,14 +17,37 @@
       }
     },
     "builder": {
+      "title": "Tailor Your Résumé",
+      "subtitle": "Paste the job description to customize your résumé",
       "fileReceived": "File received: <strong>{name}</strong> {sep} {sizeMB} MB",
-      "pdfRemodeling": "PDF remodeling here later"
+      "jobDescription": {
+        "label": "Job Description",
+        "placeholder": "Paste the job description here...",
+        "help": "Include the full job posting to get the best tailored results",
+        "minLength": "Job description must be at least 50 characters",
+        "maxLength": "Job description must be less than 5000 characters"
+      },
+      "resumePreview": {
+        "title": "Parsed Résumé Content",
+        "experience": "Experience",
+        "education": "Education",
+        "skills": "Skills",
+        "confidence": "Confidence: {confidence}%"
+      },
+      "actions": {
+        "tailor": "Tailor My Résumé",
+        "processing": "Tailoring...",
+        "return": "Back to Upload"
+      }
     }
   },
   "errors": {
     "NOT_PDF": "The file must be a PDF (.pdf).",
     "EMPTY_FILE": "The file is empty.",
-    "TOO_LARGE": "The file exceeds {maxMB} MB."
+    "TOO_LARGE": "The file exceeds {maxMB} MB.",
+    "JOB_DESCRIPTION_TOO_SHORT": "Job description is too short. Please provide more details.",
+    "JOB_DESCRIPTION_TOO_LONG": "Job description is too long. Please keep it under 5000 characters.",
+    "AI_TAILORING_FAILED": "Failed to tailor résumé. Please try again."
   },
   "common": {
     "sep": {

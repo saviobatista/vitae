@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl"; // Temporarily disabled
 import { useState, useCallback } from "react";
 
 import { MAX_FILE_BYTES, validateResumeFile } from "lib/validation/resumeFile";
@@ -10,9 +10,20 @@ import Dropzone from "@/app/upload/_components/Dropzone";
 import FileErrors from "@/app/upload/_components/FileErrors";
 import SelectedFileCard from "@/app/upload/_components/SelectedFileCard";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
 export default function UploadPage() {
   const router = useRouter();
-  const t = useTranslations("page.upload");
+  // Temporarily use static text instead of translations
+  const t = {
+    title: "Send your resume (PDF)",
+    subtitle: (mb: string) => `We only accept PDF files, up to ${mb} MB.`,
+    actions: {
+      return: "Return",
+      continue: "Continue"
+    }
+  };
 
   const { file, setFile, clear } = useUpload();
   const [errors, setErrors] = useState<string[]>([]);
@@ -43,10 +54,10 @@ export default function UploadPage() {
       <div className="container mx-auto max-w-2xl px-6 py-12">
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-            {t("title")}
+            {t.title}
           </h1>
           <p className="mt-2 text-slate-600 dark:text-slate-400">
-            {t("subtitle", { mb: maxMB })}
+            {t.subtitle(maxMB)}
           </p>
         </header>
 
@@ -69,14 +80,14 @@ export default function UploadPage() {
               onClick={() => router.back()}
               className="rounded-md border border-slate-300 px-4 py-2 text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
             >
-              {t("actions.return")}
+              {t.actions.return}
             </button>
             <button
               type="submit"
               disabled={!file || errors.length > 0}
               className="rounded-md bg-blue-600 px-5 py-2 font-semibold text-white enabled:hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {t("actions.continue")}
+              {t.actions.continue}
             </button>
           </div>
         </form>

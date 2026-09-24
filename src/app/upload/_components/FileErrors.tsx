@@ -1,14 +1,22 @@
 "use client";
 
 import { FileUploadProps } from "@/types";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl"; // Temporarily disabled
 
 export default function FileErrors({ errors, maxMB = 5 }: FileUploadProps) {
-  const t = useTranslations("errors");
+  // Temporarily use static text instead of translations
+  const t = {
+    NOT_PDF: "The file must be a PDF (.pdf).",
+    EMPTY_FILE: "The file is empty.",
+    TOO_LARGE: (maxMB: number) => `The file exceeds ${maxMB} MB.`
+  };
   if (!errors?.length) return null;
 
   const generateMessage = (code: string): string => {
-    return code === "TOO_LARGE" ? t("TOO_LARGE", { maxMB }) : t(code);
+    if (code === "TOO_LARGE") return t.TOO_LARGE(maxMB);
+    if (code === "NOT_PDF") return t.NOT_PDF;
+    if (code === "EMPTY_FILE") return t.EMPTY_FILE;
+    return code;
   };
 
   return (

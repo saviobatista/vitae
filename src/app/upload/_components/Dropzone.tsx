@@ -1,13 +1,21 @@
 "use client";
 import { useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl"; // Temporarily disabled
 import { DropzoneProps } from "@/types";
 
 export default function Dropzone({
   accept = "application/pdf",
   onFile,
 }: DropzoneProps) {
-  const t = useTranslations("page.upload.dropzone");
+  // Temporarily use static text instead of translations
+  const t = {
+    dropAria: "Drag and drop your PDF here",
+    dragHere: "Drag your PDF here",
+    or: "or",
+    selectFile: "Select file",
+    onlyPdf: "Only PDF",
+    maxSize: (mb: number) => `Max ${mb} MB`
+  };
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [dragging, setDragging] = useState(false);
 
@@ -32,7 +40,7 @@ export default function Dropzone({
   return (
     <div
       role="region"
-      aria-label={t("dropAria")}
+      aria-label={t.dropAria}
       onDrop={onDrop}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
@@ -55,22 +63,22 @@ export default function Dropzone({
       </div>
 
       <p className="font-medium text-slate-800 dark:text-slate-200">
-        {t("dragHere")}
+        {t.dragHere}
       </p>
 
-      <p className="text-sm text-slate-500 dark:text-slate-400">{t("or")}</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400">{t.or}</p>
 
       <button
         type="button"
         onClick={pick}
         className="mt-3 rounded-md bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
       >
-        {t("selectFile")}
+        {t.selectFile}
       </button>
 
       <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
-        {t("onlyPdf")} <span aria-hidden="true">&middot;</span>{" "}
-        {t("maxSize", { mb: MAX_MB })}
+        {t.onlyPdf} <span aria-hidden="true">&middot;</span>{" "}
+        {t.maxSize(MAX_MB)}
       </p>
     </div>
   );

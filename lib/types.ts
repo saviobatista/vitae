@@ -102,6 +102,10 @@ export type SelectedFileCardProps = { file: File; onClear: () => void };
 export type UploadContextValue = {
   file: File | null;
   setFile: (f: File | null) => void;
+  parsedResume: SegmentationResult | null;
+  setParsedResume: (resume: SegmentationResult | null) => void;
+  jobDescription: string;
+  setJobDescription: (description: string) => void;
   clear: () => void;
 };
 /**
@@ -140,4 +144,40 @@ export class SegmentationError extends Error {
     super(message);
     this.name = "SegmentationError";
   }
+}
+
+/**
+ * Interface for job description input and validation
+ */
+export interface JobDescriptionInput {
+  text: string;
+  isValid: boolean;
+  errors: string[];
+}
+
+/**
+ * Interface for AI tailoring request
+ */
+export interface TailoringRequest {
+  resumeContent: string;
+  jobDescription: string;
+}
+
+/**
+ * Interface for AI tailoring response
+ */
+export interface TailoringResponse {
+  tailoredResume: string;
+  confidence: number;
+  suggestions: string[];
+}
+
+/**
+ * Interface for the builder page state
+ */
+export interface BuilderState {
+  jobDescription: string;
+  isProcessing: boolean;
+  errors: string[];
+  parsedResume?: SegmentationResult;
 }

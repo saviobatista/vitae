@@ -76,6 +76,15 @@ function normalizeWhitespace(input: string): string {
 export async function extractText(buffer: ArrayBuffer): Promise<string> {
   try {
     const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+    
+    // Configure PDF.js worker for browser environment
+    // PDF.js requires a worker to be configured before it can process PDFs
+    // We serve the worker file statically from the public directory
+    if (typeof window !== "undefined") {
+      // Browser environment - set worker source
+      pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+    }
+    
     // Reduce noisy logs in Node test environment
     try {
       const pdfjsAny = pdfjs as {

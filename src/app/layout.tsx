@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import en from "@/i18n/messages/en.json";
+// import { NextIntlClientProvider } from "next-intl"; // Temporarily disabled
+// import en from "@/i18n/messages/en.json"; // Temporarily disabled
 import "./globals.css";
 import { UploadProvider } from "@/app/lib/state/uploadContext";
 
@@ -29,9 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider messages={en} locale="en">
-          <UploadProvider>{children}</UploadProvider>
-        </NextIntlClientProvider>
+        <UploadProvider>{children}</UploadProvider>
       </body>
     </html>
   );
